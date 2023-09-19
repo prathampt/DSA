@@ -5,7 +5,7 @@ int main(){
     printf("Enter the size of array: ");
     scanf("%d", &n);
 
-    int arr[n];
+    int arr[20]; // it is not recommended to put n here...
 
     for (int i = 0; i < n; i++)
     {
