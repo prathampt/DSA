@@ -22,7 +22,7 @@ int main(){
         max2 = arr[0];
     }
     
-    for (int i = 0; i < n; i++)
+    for (int i = 2; i < n; i++)
     {
         if (max2<arr[i])
         {
@@ -32,7 +32,7 @@ int main(){
                 max2 = max1;
                 max1 = arr[i];
             }
-            else if (max1!=arr[i])
+            else
             {
                 max2 = arr[i];
             }
