@@ -15,5 +15,5 @@ int removeAtIndex(Array *arr, int index);
 void reverse(Array *arr);
 int min(Array arr);
 int max(Array arr);
-Array * merge(Array arr1, Array arr2);
+Array join(Array arr1, Array arr2);
 void sort(Array *arr);
