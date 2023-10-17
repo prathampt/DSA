@@ -6,13 +6,13 @@ int main() {
     init(&arr1, 10);
     init(&arr2, 5);
 
-    printf("Adding elements to arr1:\n");
+    printf("Adding elements to arr1 using fill function:\n");
     fill(&arr1);
 
     printf("\nDisplaying arr1:\n");
     display(arr1);
 
-    printf("\nAdding elements to arr2:\n");
+    printf("\nAdding elements to arr2 using append function:\n");
     append(&arr2, 15);
     append(&arr2, 44);
     append(&arr2, 6);
@@ -25,14 +25,14 @@ int main() {
     insert(&arr2, 88, 3);
     display(arr2);
 
-    printf("\nRemoving element 5 from arr1:\n");
-    int removedElement = removeElement(&arr1, 5);
-    printf("Removed Element: %d\n", removedElement);
+    printf("\nRemoving element 50 from arr1:\n");
+    int removedElementIndex = removeElement(&arr1, 50);
+    printf("Removed Element Index was: %d\n", removedElementIndex);
     display(arr1);
 
     printf("\nRemoving element at index 2 from arr2:\n");
-    int removedIndex = removeAtIndex(&arr2, 2);
-    printf("Removed Element at Index 2: %d\n", removedIndex);
+    int removedElement = removeAtIndex(&arr2, 2);
+    printf("Removed Element was: %d\n", removedElement);
     display(arr2);
 
     printf("\nReversing arr1:\n");

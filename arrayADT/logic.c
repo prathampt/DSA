@@ -32,7 +32,7 @@ void display(Array arr){
         printf("%d, ", arr.A[i]);
     }
 
-    printf("\b\b ]\n");
+    printf("\b\b]\n");
     return;
     
 }
@@ -45,7 +45,7 @@ void append(Array *arr, int element){
 }
 
 void insert(Array *arr, int element, int position){
-    int length = arr->length, temp;
+    int length = arr->length;
 
     if (length == arr->size || position < 0 || position >= length) return;
 
@@ -79,6 +79,11 @@ int removeElement(Array *arr, int element){
         
     }
 
+    if (removedIndex == -1)
+    {
+        return removedIndex;
+    }
+    
     arr->A[length-1] = 0;
     arr->length--;
 
@@ -89,6 +94,11 @@ int removeElement(Array *arr, int element){
 int removeAtIndex(Array *arr, int index){
     int removedElement = arr->A[index], length = arr->length;
 
+    if (index < 0 || index >= length)
+    {
+        return -1;
+    }
+    
     for (int i = index; i < length - 1; i++)
     {
         arr->A[i] = arr->A[i + 1];
