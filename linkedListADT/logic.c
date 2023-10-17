@@ -12,10 +12,10 @@ void display(List l){
 
     while (l)
     {
-        printf("%d -> ", l->data);
+        printf(" %d ->", l->data);
         l = l->next;
     }
-    printf("\b\b\b\n");
+    printf("\b \b\b \n");
 
     return;
     
@@ -29,7 +29,7 @@ void append(List *l, int data){
     newNode->data = data;
     newNode->next = NULL;
 
-    if (!l)
+    if (!*l)
     {
         *l = newNode;
         return;
@@ -55,25 +55,26 @@ void insertAtBeginning(List *l, int data){
     newNode->next = *l;
     
     *l = newNode;
+    return;
 }
 
 int removeEnd(List *l){
-    Node *p;
+    Node *p, *q;
+    int removedElement;
 
-    if (!l) return;
+    if (!*l) return -1;
 
     p = *l;
 
     if (!p->next)
     {
+        removedElement = p->data;
         *l = NULL;
         free(p);
-        return;
+        return removedElement;
     }
 
-    Node *q;
-
-    while (!p->next->next)
+    while (p->next->next)
     {
         p = p->next;
     }
@@ -81,17 +82,20 @@ int removeEnd(List *l){
     q = p->next;
     p->next = NULL;
 
+    removedElement = q->data;
     free(q);
-    return;    
+    return removedElement;    
 }
 
 int removeBeginning(List *l){
     Node *p;
+    int removedElement;
 
     p = *l;
 
     *l = (*l)->next;
 
+    removedElement = p->data;
     free(p);
-    return;
+    return removedElement;
 }
