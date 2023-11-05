@@ -1,4 +1,4 @@
-#include "logic.c"
+#include "List.c"
 
 int main(){
     Sparse s1, s2;

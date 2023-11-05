@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "header.h"
+#include "List.h"
 
 void init(Sparse *s){
     s->header = NULL;
