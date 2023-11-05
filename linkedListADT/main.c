@@ -26,5 +26,17 @@ int main() {
     printf("Removed Element from Beginning: %d\n", removedBeginning);
     display(myList);
 
+    printf("Inserting at index 2:\n");
+    addNodeAtPosition(&myList, 24, 2);
+    display(myList);
+    append(&myList, 10);
+    append(&myList, 20);
+    append(&myList, 30);
+    display(myList);
+    addNodeAtPosition(&myList, 35, 3);
+    display(myList);
+
+    
+
     return 0;
 }

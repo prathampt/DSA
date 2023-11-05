@@ -49,7 +49,7 @@ void insert(Array *arr, int element, int position){
 
     if (length == arr->size || position < 0 || position >= length) return;
 
-    for (int i = length + 1; i > position; i--)
+    for (int i = length; i > position; i--)
     {
         arr->A[i] = arr->A[i-1];
     }

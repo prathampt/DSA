@@ -15,7 +15,7 @@ void display(List l){
         printf(" %d ->", l->data);
         l = l->next;
     }
-    printf("\b \b\b \n");
+    printf("\b\b   \n");
 
     return;
     
@@ -98,4 +98,58 @@ int removeBeginning(List *l){
     removedElement = p->data;
     free(p);
     return removedElement;
+}
+
+void addNodeAtPosition(List *l, int data, int position){
+    Node *newNode, *p;
+    int i;
+
+    if (position < 0 || position > length(*l)) return;
+
+    newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (position == 0)
+    {
+        newNode->next = *l;
+        *l = newNode;
+    }
+    else
+    {
+        p = *l;
+        for(i = 0; i < position - 1; i++)
+        {
+            p = p->next;
+        }
+        newNode->next = p->next;
+        p->next = newNode;
+    }
+    return;
+}
+
+int length(List l){
+    Node *p = l;
+    int count = 0;
+
+    while(p){
+        count++;
+        p = p->next;
+    }
+
+    return count;
+}
+
+void deleteList(List *l){
+    Node *current = *l;
+    Node *nextNode;
+
+    while (current != NULL)
+    {
+        nextNode = current->next;
+        free(current);
+        current = nextNode;
+    }
+    
+    *l = NULL;
 }
