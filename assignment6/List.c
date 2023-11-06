@@ -244,6 +244,7 @@ void writeIntoFile(char *fileName, Sparse s){
         fprintf(fptr, "\n");
     }
     
+    fclose(fptr);
     return;
 
 }
