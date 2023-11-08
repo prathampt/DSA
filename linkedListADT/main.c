@@ -36,7 +36,9 @@ int main() {
     addNodeAtPosition(&myList, 35, 3);
     display(myList);
 
-    
+    printf("After swapping: \n");
+    swapNodes(&myList, myList->next, myList->next->next->next->next);
+    display(myList);
 
     return 0;
 }

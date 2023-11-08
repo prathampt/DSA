@@ -14,3 +14,5 @@ int removeEnd(List *l);
 int removeBeginning(List *l);
 void addNodeAtPosition(List *l, int data, int position);
 int length(List l);
+void swapNodes(List * l, Node * n1, Node * n2);
+void fill(List *l, int number);

@@ -51,12 +51,7 @@ void display(Sparse s){
         {   
             if (p != NULL && p->row == i && p->col == j)
             {
-                printf("%3d", p->val);
-                if (p == NULL){
-                    printf("\n");
-                    return;
-                }
-                
+                printf("%3d", p->val);                
                 p = p->next;
             }
             else

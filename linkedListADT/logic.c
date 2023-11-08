@@ -153,3 +153,42 @@ void deleteList(List *l){
     
     *l = NULL;
 }
+
+void swapNodes(List * l, Node * n1, Node * n2){
+    if (n1 == n2 || !n1 || !n2 || !(*l)) return;
+
+    List * master = l;
+
+    while ((*master) != n1)
+    {
+        master = &(*master)->next;
+    }
+
+    (*master) = n2;
+
+    master = &n1->next;
+
+    while ((*master) != n2)
+    {
+        master = &(*master)->next;
+    }
+
+    (*master) = n1;
+
+    Node * temp = n1->next;
+    n1->next = n2->next;
+    n2->next = temp;
+
+    return;    
+}
+
+void fill(List *l, int number){
+    if (number < 1) return;
+
+    for (int i = 0; i < number; i++)
+    {
+        append(l, rand() % 100 + 1);
+    }
+
+    return;    
+}
