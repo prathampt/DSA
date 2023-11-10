@@ -41,13 +41,12 @@ void append(Polynomial *p, int degree, int coefficient){
 // The following function will check for the presence of node of same degree and will modify it if already present,
 // else will append a new node, this function will add the node in descending order only...
 void append(Polynomial *p, int degree, int coefficient){
-    int insert = 0;
     if (coefficient == 0) return;
+    int insert = 0;
 
     Node * temp = p->header;
 
-    if (!temp);
-    else{
+    if (temp){
 
         while (temp->next)
         {
