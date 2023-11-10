@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "header.h"
 
 void init(List *l){
@@ -83,6 +84,7 @@ void insertAtIndex(List *l, int data, int index){
 }
 
 int removeEnd(List *l){
+    if (!l->rear) return INT_MIN;
     Node *p = l->rear;
 
     l->rear = l->rear->previous;
@@ -96,6 +98,7 @@ int removeEnd(List *l){
 }
 
 int removeBeginning(List *l){
+    if (!l->front) return INT_MIN;
     Node *p = l->front;
 
     l->front = l->front->next;
@@ -109,7 +112,7 @@ int removeBeginning(List *l){
 }
 
 int removeAtIndex(List *l, int index){
-    if (index < 0) return;
+    if (index < 0) return INT_MIN;
     else if (index == 0) {
         return removeBeginning(l);
     }
@@ -120,6 +123,8 @@ int removeAtIndex(List *l, int index){
     {
         p = p->next;
     }
+
+    if (!p->next) return removeEnd(l);
 
     p->previous->next = p->next;
     p->next->previous = p->previous;
@@ -132,6 +137,9 @@ int removeAtIndex(List *l, int index){
 }
 
 int removeNode(List *l, Node * n){
+    if (n == l->front) return removeBeginning(l);
+    else if (n == l->rear) return removeEnd(l);
+
     n->previous->next = n->next;
     n->next->previous = n->previous;
 
@@ -147,10 +155,15 @@ void display(List l){
 
     printf("Displaying the linked list: ");
 
-    while (l.front)
-    {
-        printf("%d <-> ", l.front->data);
-        l.front = l.front->next;
+    // Node * p = l.front;
+    // while (p)
+    // {
+    //     printf("%d <-> ", p->data);
+    //     p = p->next;
+    // }
+
+    for (Node * p = l.front; p != NULL; p = p->next){
+        printf("%d <-> ", p->data);
     }
 
     printf("\b\b\b\b     \n");
@@ -170,5 +183,49 @@ int length(List l){
     return count;
 }
 
-void fill(List *l, int numberOfNodes);
-void swapNodes(List *l, Node *n1, Node *n2);
+void fill(List *l, int numberOfNodes){
+    if (numberOfNodes < 1) return;
+
+    for (int i = 0; i < numberOfNodes; i++)
+    {
+        append(l, rand() % 201 - 100);
+    }
+
+    return;    
+}
+
+void swapNodes(List *l, Node *n1, Node *n2){
+    if (n1 == n2) return;
+    else if (n1->next == n2){
+        n1->previous->next = n2;
+        n2->next->previous = n1;
+
+        Node * p = n2->next;
+        n2->next = n1;
+        n1->next = p;
+
+        p = n1->previous;
+        n1->previous = n2;
+        n2->previous = p;
+
+        return;
+    }
+
+    if (!n1->previous) l->front = n2;
+    else n1->previous->next = n2;
+    n1->next->previous = n2;
+
+    if(!n2->next) l->rear = n1;
+    else n2->next->previous = n1;
+    n2->previous->next = n1;
+
+    Node *p = n1->previous;
+    n1->previous = n2->previous;
+    n2->previous = p;
+
+    p = n1->next;
+    n1->next = n2->next;
+    n2->next = p;
+
+    return;
+}
