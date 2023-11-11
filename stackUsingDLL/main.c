@@ -3,20 +3,24 @@
 int main(){
     Stack s;
 
-    init(&s, 6);
+    init(&s);
 
-    push(&s, 4);
-    push(&s, 3);
-    push(&s, -40);
-
-    display(s);
-
-    push(&s, -34);
+    push(&s, 6);
+    push(&s, 7);
+    push(&s, -5);
     push(&s, 0);
+    push(&s, -2);
+    push(&s, 1);
 
     display(s);
 
-    printf("Pop: %d\n", pop(&s));
+    push(&s, -65);
+    push(&s, 48);
+
+    display(s);
+
+    pop(&s);
+    pop(&s);
 
     display(s);
 
