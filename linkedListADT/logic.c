@@ -100,6 +100,35 @@ int removeBeginning(List *l){
     return removedElement;
 }
 
+int removeNode(List *l, Node *n){
+    Node *p, *q;
+    int removedElement;
+
+    if (!*l) return -1;
+
+    p = *l;
+
+    if (!p->next)
+    {
+        removedElement = p->data;
+        *l = NULL;
+        free(p);
+        return removedElement;
+    }
+
+    while (p->next->next != n)
+    {
+        p = p->next;
+    }
+    
+    q = p->next;
+    p->next = p->next->next;
+
+    removedElement = q->data;
+    free(q);
+    return removedElement;
+}
+
 void addNodeAtPosition(List *l, int data, int position){
     Node *newNode, *p;
     int i;
@@ -279,4 +308,42 @@ int isPalindrome(List l){
     return 1; 
 }
 
-void removeDuplicates(List *l);
+void removeDuplicates(List *l){
+    int len = length(*l);
+
+    int * arr = (int *) calloc(len, sizeof(int));
+
+    if (!arr) return;
+
+    int count = 0;
+
+    Node * p = *l;
+
+    arr[count++] = p->data;
+
+    while (p->next)
+    {
+        int data = p->next->data;
+        int dublicate = 0;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (arr[i] == data){
+                dublicate = 1;
+                break;
+            }
+        }
+
+        if (dublicate)
+        {
+            Node * q = p->next;
+            p->next = p->next->next;
+            free(q);
+        }
+        else{
+            arr[count++] = data;
+            p = p->next;
+        }
+    }
+
+}

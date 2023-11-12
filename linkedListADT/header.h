@@ -12,6 +12,7 @@ void append(List *l, int data);
 void insertAtBeginning(List *l, int data);
 int removeEnd(List *l);
 int removeBeginning(List *l);
+int removeNode(List *l, Node *n);
 void addNodeAtPosition(List *l, int data, int position);
 int length(List l);
 void swapNodes(List * l, Node * n1, Node * n2);

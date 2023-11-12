@@ -93,5 +93,17 @@ int main() {
 
     // Test for isPalindrome function ended here...
 
+    // Test for removeDuplicates...
+
+    append(&palindromeTest2, 5);
+    printf("Before removing Duplicates: \n");
+    display(palindromeTest2);
+
+    removeDuplicates(&palindromeTest2);
+    printf("After removing duplicates: \n");
+    display(palindromeTest2);
+
+    // Test for removeDuplicates complete...
+
     return 0;
 }
