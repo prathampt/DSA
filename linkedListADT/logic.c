@@ -347,3 +347,15 @@ void removeDuplicates(List *l){
     }
 
 }
+
+void destroy(List *l){
+    if (!*l) return;
+
+    while (*l)
+    {
+        removeBeginning(l);
+    }
+
+    return;
+}
+

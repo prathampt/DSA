@@ -20,3 +20,4 @@ void fill(List *l, int number);
 void reverseEven(List *l);
 int isPalindrome(List l);
 void removeDuplicates(List *l);
+void destroy(List *l);

@@ -88,6 +88,10 @@ int removeEnd(List *l){
     Node *p = l->rear;
 
     l->rear = l->rear->previous;
+    if (!l->rear){
+        l->front = NULL;
+        return INT_MIN;
+    }
     l->rear->next = NULL;
 
     int data = p->data;
@@ -102,6 +106,10 @@ int removeBeginning(List *l){
     Node *p = l->front;
 
     l->front = l->front->next;
+    if (!l->front){
+        l->rear = NULL;
+        return INT_MIN;
+    } 
     l->front->previous = NULL;
 
     int data = p->data;
@@ -148,6 +156,17 @@ int removeNode(List *l, Node * n){
     free(n);
 
     return data;
+}
+
+void destroy(List *l){
+    if (!l->front) return;
+
+    while (l->front)
+    {
+        removeBeginning(l);
+    }
+    
+    return;
 }
 
 void display(List l){

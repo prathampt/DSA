@@ -34,5 +34,9 @@ int main(){
     swapNodes(&l, l.front->next->next, l.front->next->next->next);
     display(l);
 
+    printf("Destroying the list:\n");
+    destroy(&l);
+    display(l);
+
     return 0;
 }

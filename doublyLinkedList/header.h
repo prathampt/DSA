@@ -17,6 +17,7 @@ int removeEnd(List *l);
 int removeBeginning(List *l);
 int removeAtIndex(List *l, int index);
 int removeNode(List *l, Node * n);
+void destroy(List *l);
 
 void display(List l);
 int length(List l);

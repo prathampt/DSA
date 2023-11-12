@@ -105,5 +105,13 @@ int main() {
 
     // Test for removeDuplicates complete...
 
+    // Destroy function...
+
+    destroy(&myList);
+    destroy(&testList);
+    destroy(&palindromeTest1);
+    destroy(&palindromeTest2);
+
+    display(myList);
     return 0;
 }
