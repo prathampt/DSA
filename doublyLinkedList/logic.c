@@ -202,6 +202,21 @@ int length(List l){
     return count;
 }
 
+void initASCII(List *l, char a){
+    init(l);
+
+    int p = (int) a;
+
+    while (p)
+    {
+        insertAtBeginning(l, p % 10);
+        p /= 10;
+    }
+    
+    return;
+}
+
+
 void fill(List *l, int numberOfNodes){
     if (numberOfNodes < 1) return;
 

@@ -38,5 +38,11 @@ int main(){
     destroy(&l);
     display(l);
 
+    // Test for initASCII...
+    List A;
+    initASCII(&A, '|');
+    display(A);
+    destroy(&A);
+
     return 0;
 }

@@ -21,6 +21,7 @@ void destroy(List *l);
 
 void display(List l);
 int length(List l);
+void initASCII(List *l, char a);
 
 void fill(List *l, int numberOfNodes);
 void swapNodes(List *l, Node *n1, Node *n2);
