@@ -40,5 +40,31 @@ int main() {
     swapNodes(&myList, myList->next, myList->next->next->next->next);
     display(myList);
 
+    // Testing the working of reverseEven function...
+
+    List testList;
+    init(&testList);
+
+    append(&testList, 1);
+    append(&testList, 2);
+    append(&testList, 8);
+    append(&testList, 9);
+    append(&testList, 12);
+    append(&testList, 16);
+    append(&testList, 18);
+    append(&testList, 11);
+    append(&testList, 14);   
+    append(&testList, 13);
+
+    printf("Before ReverseEven: \n");
+    display(testList);
+
+    reverseEven(&testList);
+
+    printf("After ReverseEven: \n");
+    display(testList);
+
+    // Test reverseEven function complete...
+
     return 0;
 }

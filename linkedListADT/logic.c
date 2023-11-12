@@ -192,3 +192,68 @@ void fill(List *l, int number){
 
     return;    
 }
+
+void reverseEven(List *l){
+    if (length(*l) - 2 < 0) return;
+
+    Node * p = *l, *q, *r, *s;
+
+    while (p->next)
+    {
+        q = r = s = NULL;
+        if (p->data % 2 == 0){
+            q = p;
+            r = p;
+        }
+        else if (p->next->data % 2 == 1){
+            p = p->next;
+            continue;
+        }
+        else {
+            q = p->next;
+            r = q;
+        }
+
+        while (r->next->data % 2 == 0)
+        {
+            r = r->next;
+        }
+
+        if (q == r){
+            p = r->next;
+            continue;
+        }
+        else s = q->next;
+
+        if (q == p){
+            *l = r;
+            q->next = r->next;
+            p = q;
+            q = s;
+            s = s->next;
+        }
+        else {
+            p->next = r;
+            q->next = r->next;
+            p = q;
+            q = s;
+            s = s->next;
+        }
+
+        while (p != r)
+        {
+            q->next = p;
+            p = q;
+            q = s;
+            s = s->next;
+        }
+        
+        p = q;       
+    }
+
+    return;
+    
+}
+
+void isPalindrome(List l);
+void removeDuplicates(List *l);

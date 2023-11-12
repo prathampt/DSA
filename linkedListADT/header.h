@@ -16,3 +16,6 @@ void addNodeAtPosition(List *l, int data, int position);
 int length(List l);
 void swapNodes(List * l, Node * n1, Node * n2);
 void fill(List *l, int number);
+void reverseEven(List *l);
+void isPalindrome(List l);
+void removeDuplicates(List *l);
