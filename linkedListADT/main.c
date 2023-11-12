@@ -66,5 +66,32 @@ int main() {
 
     // Test reverseEven function complete...
 
+    // Test for isPalindrome function...
+
+    List palindromeTest1, palindromeTest2;
+    init(&palindromeTest1);
+    init(&palindromeTest2);
+
+    append(&palindromeTest1, 1);
+    append(&palindromeTest1, 2);
+    append(&palindromeTest1, 3);
+    append(&palindromeTest1, 2);
+    append(&palindromeTest1, 1);
+
+    display(palindromeTest1);
+    printf("Palindrom Test is palindrome: %s\n", isPalindrome(palindromeTest1) ? "True" : "False");
+
+    append(&palindromeTest2, 1);
+    append(&palindromeTest2, 2);
+    append(&palindromeTest2, 3);
+    append(&palindromeTest2, 1);
+    append(&palindromeTest2, 2);
+    append(&palindromeTest2, 1);
+
+    display(palindromeTest2);
+    printf("Palindrom Test is palindrome: %s\n", isPalindrome(palindromeTest2) ? "True" : "False");
+
+    // Test for isPalindrome function ended here...
+
     return 0;
 }

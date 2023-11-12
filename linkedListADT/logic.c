@@ -227,18 +227,15 @@ void reverseEven(List *l){
 
         if (q == p){
             *l = r;
-            q->next = r->next;
-            p = q;
-            q = s;
-            s = s->next;
         }
         else {
             p->next = r;
-            q->next = r->next;
-            p = q;
-            q = s;
-            s = s->next;
         }
+
+        q->next = r->next;
+        p = q;
+        q = s;
+        s = s->next;
 
         while (p != r)
         {
@@ -255,5 +252,31 @@ void reverseEven(List *l){
     
 }
 
-void isPalindrome(List l);
+int isPalindrome(List l){
+    int len = length(l);
+    int halfLength = len / 2;
+
+    if (len - 2 < 0) return 1;
+
+    int * arr = (int *) malloc(halfLength * sizeof(int));
+
+    Node * p = l;
+
+    for (int i = 0; i < halfLength; i++)
+    {
+        arr[i] = p->data;
+        p = p->next;
+    }
+
+    if (len % 2 == 1) p = p->next;
+
+    for (int i = halfLength - 1; i >= 0; i--)
+    {
+        if (arr[i] != p->data) return 0;
+        p = p->next;
+    }
+    
+    return 1; 
+}
+
 void removeDuplicates(List *l);
