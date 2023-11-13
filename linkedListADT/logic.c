@@ -359,3 +359,35 @@ void destroy(List *l){
     return;
 }
 
+void removeAndInsert(List *l, Node *n, int index){
+    if (!*l) return;    
+
+    Node *p = *l;
+
+    while (p->next != n)
+    {
+        p = p->next;
+    }
+
+    p->next = n->next;
+
+    if (!index)
+    {
+        n->next = *l;
+        *l = n;
+        return; 
+    }
+    
+    Node *q = *l;
+
+    for (int i = 0; i < index - 1; i++)
+    {
+        q = q->next;
+    }
+
+    n->next = q->next;
+    q->next = n;
+
+    return;
+    
+}

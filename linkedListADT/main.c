@@ -105,6 +105,12 @@ int main() {
 
     // Test for removeDuplicates complete...
 
+    // Test for remove and insert...
+
+    display(palindromeTest1);
+    removeAndInsert(&palindromeTest1, palindromeTest1->next->next->next, 0);
+    display(palindromeTest1);
+
     // Destroy function...
 
     destroy(&myList);

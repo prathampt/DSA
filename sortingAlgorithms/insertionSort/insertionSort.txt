@@ -1,4 +1,4 @@
-Best Case: O(n^2)
+Best Case: O(n)
 Worst Case: O(n^2)
 
 ## Inplace Sorting Algorithm...

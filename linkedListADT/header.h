@@ -21,3 +21,4 @@ void reverseEven(List *l);
 int isPalindrome(List l);
 void removeDuplicates(List *l);
 void destroy(List *l);
+void removeAndInsert(List *l, Node *n, int index);
