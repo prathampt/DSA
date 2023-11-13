@@ -17,12 +17,14 @@ void bubbleSortLinkedList(List * l){
     {
         p = *l;
         q = p->next;
+        swapped = 0;
 
         while (q != s)
         {
             if (p->data > q->data)
             {
                 swapNodes(l, p, q);
+                swapped = 1;
             }
             
             p = q;
@@ -30,9 +32,10 @@ void bubbleSortLinkedList(List * l){
         }
 
         s = p;
+        if (!swapped) return;
         
     }
-    
+
     return;
 }
 
