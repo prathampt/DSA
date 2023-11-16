@@ -25,7 +25,7 @@ void insertionSortArrayADT(Array *a){
 }
 
 /*
-    Let's see avove code in action...
+    Let's see above code in action...
 */
 
 int main(){
