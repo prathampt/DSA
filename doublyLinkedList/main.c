@@ -42,6 +42,9 @@ int main(){
     List A;
     initASCII(&A, '|');
     display(A);
+    printf("Display Reverse:\n");
+    reverseList(&A);
+    display(A);
     destroy(&A);
 
     return 0;

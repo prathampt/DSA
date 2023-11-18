@@ -25,3 +25,5 @@ void initASCII(List *l, char a);
 
 void fill(List *l, int numberOfNodes);
 void swapNodes(List *l, Node *n1, Node *n2);
+
+void reverseList(List *l);

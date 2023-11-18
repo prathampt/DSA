@@ -263,3 +263,27 @@ void swapNodes(List *l, Node *n1, Node *n2){
 
     return;
 }
+
+void reverseList(List *l){
+    if (!l->front) return;
+
+    l->rear = l->front;
+
+    while (l->front->next)
+    {
+        Node *p = l->front->next;
+        Node *q = l->front->previous;
+        
+        l->front->next = q;
+        l->front->previous = p;
+        l->front = p;
+    }
+    
+    Node *p = l->front->next;
+    Node *q = l->front->previous;
+    
+    l->front->next = q;
+    l->front->previous = p;
+    
+    return;    
+}
