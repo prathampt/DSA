@@ -1,7 +1,7 @@
 #include "logic.c"
 
 int main(){
-    char * string = "a * b + c ^ d / e * f + g * h";
+    char * string = "a + b * (c ^ d - e ) + f * (g + (h + i ^ j) * k) + l";
 
     int len = 0, i = 0;
     char c;
