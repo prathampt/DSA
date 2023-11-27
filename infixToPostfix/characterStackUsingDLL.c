@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "header.h"
+#include "characterStackUsingDLL.h"
 
 void init(Stack *s){
     s->base = NULL;
@@ -15,7 +15,7 @@ int isEmpty(Stack s){
     return 0;
 }
 
-void push(Stack *s, int data){
+void push(Stack *s, char data){
     Node * nn = (Node *) malloc(sizeof(Node));
 
     if (!nn) return;
@@ -40,8 +40,8 @@ void push(Stack *s, int data){
     return;
 }
 
-int pop(Stack *s){
-    if (isEmpty(*s)) return INT_MIN;
+char pop(Stack *s){
+    if (isEmpty(*s)) return CHAR_MIN;
 
     Node *p = s->top;
 
@@ -49,15 +49,15 @@ int pop(Stack *s){
     if (s->top) s->top->next = NULL;
     else s->base = NULL;
 
-    int data = p->data;
+    char data = p->data;
 
     free(p);
 
     return data;
 }
 
-int peek(Stack s){
-    if (isEmpty(s)) return INT_MIN;
+char peek(Stack s){
+    if (isEmpty(s)) return CHAR_MIN;
 
     return s.top->data;
 }
@@ -69,7 +69,7 @@ void display(Stack s){
 
     for (Node * p = s.base; p != NULL; p = p->next)
     {
-        printf("%d | ", p->data);
+        printf("%c | ", p->data);
     }
     
     printf("\b\b   \n");
