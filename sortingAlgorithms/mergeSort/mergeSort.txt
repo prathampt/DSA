@@ -1,5 +1,5 @@
-Best Case: O(log n)
-Worst Case: O(log n)
+Best Case: O(n * log n)
+Worst Case: O(n * log n)
 
 ## Inplace Sorting Algorithm...
 ## Divide and Conquer Approach...
