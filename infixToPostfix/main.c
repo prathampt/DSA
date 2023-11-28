@@ -1,7 +1,7 @@
 #include "logic.c"
 
 int main(){
-    char * string = "a + b * (c ^ d - e ) + f * (g + (h + i ^ j) * k) + l";
+    char * string = "(10 + 96) * (34 - 8) ^ 4 % 5";
 
     int len = 0, i = 0;
     char c;
@@ -13,7 +13,7 @@ int main(){
 
     while ((c = answer[i]) != '\0')
     {
-        printf("%c ", c);
+        printf("%c", c);
         i++;
     }
     

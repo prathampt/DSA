@@ -1,4 +1,5 @@
 #include "characterStackUsingDLL.c"
+#include <ctype.h>
 
 int operatorPrecedence(char c){
     switch (c){
@@ -9,6 +10,7 @@ int operatorPrecedence(char c){
             return 0;
         case '*':
         case '/':
+        case '%':
             return 1;
         case '^':
             return 2;
@@ -22,6 +24,7 @@ int isOperator(char c){
         case '*':
         case '/':
         case '^':
+        case '%':
             return 1;
         default:
             return 0;
@@ -51,6 +54,7 @@ char * infixToPostfix(char * str, int n){
         if (c == ')'){
             while (peek(s) != '('){
                 answer[j++] = pop(&s);
+                answer[j++] = ' ';
             }
             i++;
             pop(&s);
@@ -61,6 +65,7 @@ char * infixToPostfix(char * str, int n){
             
             while (!isEmpty(s) && (operatorPrecedence(peek(s)) >= operatorPrecedence(c))){
                 answer[j++] = pop(&s);
+                answer[j++] = ' ';
             }
 
             push(&s, c);
@@ -69,7 +74,7 @@ char * infixToPostfix(char * str, int n){
         }
 
         answer[j++] = c;
-        i++;
+        if (!isalnum(str[++i])) answer[j++] = ' ';
     }
 
     while (!isEmpty(s)){
