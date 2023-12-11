@@ -1,26 +1,22 @@
-/*
-Question: Display array elements in reverse order (from last to first) using a macro for array size.
-*/
+#include<stdio.h>
 
-#include <stdio.h>
-
-#define SIZE 10
-
-int main() {
-    int arr[SIZE];
-
-    // Input elements of the array
-    printf("Enter %d integers:\n", SIZE);
-    for (int i = 0; i < SIZE; ++i) {
-        scanf("%d", &arr[i]);
-    }
-
-    // Display array elements in reverse order
-    printf("Array elements in reverse order:\n");
-    for (int i = SIZE - 1; i >= 0; --i) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-
-    return 0;
+int main()
+{
+	int count=0;
+	int sum=0;
+	
+	for (int i=1; i<200; i=i+1)
+	{
+		if(i%2==0)
+		{
+			count=count+1;
+			sum=sum+i;
+		}
+	}
+	
+	printf("The total number of even numbers between 1 and 200 is %d\n",count);
+	printf("The sum of all even numbers between 1 and 200 is %d\n",sum);
+	
+	return 0;
 }
+ 

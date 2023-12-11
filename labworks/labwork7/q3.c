@@ -1,61 +1,66 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-typedef struct {
-    char name[50];
-    char address[100];
-    int grade;
-    int numRooms;
-    float roomCharges;
-} Hotel;
+// Function to find the longest common subsequence
+const char* longestCommonSubsequence(const char* str1, const char* str2, int* length) {
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
 
-void grade(Hotel hotels[], int numHotels, int targetGrade) {
-    printf("Hotels in Grade %d:\n", targetGrade);
-    for (int i = 0; i < numHotels; ++i) {
-        if (hotels[i].grade == targetGrade) {
-            printf("%s\n", hotels[i].name);
+    // Create a 2D array to store the length of common subsequences
+    int dp[len1 + 1][len2 + 1];
+
+    // Build the dp array
+    for (int i = 0; i <= len1; ++i) {
+        for (int j = 0; j <= len2; ++j) {
+            if (i == 0 || j == 0)
+                dp[i][j] = 0;
+            else if (str1[i - 1] == str2[j - 1])
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            else
+                dp[i][j] = (dp[i - 1][j] > dp[i][j - 1]) ? dp[i - 1][j] : dp[i][j - 1];
         }
     }
-}
 
-void lessThanCharge(Hotel hotels[], int numHotels, float maxRoomCharge) {
-    printf("\nHotels with Room Charges Less Than %.2f:\n", maxRoomCharge);
-    for (int i = 0; i < numHotels; ++i) {
-        if (hotels[i].roomCharges < maxRoomCharge) {
-            printf("%s\n", hotels[i].name);
+    // Length of the longest common subsequence
+    *length = dp[len1][len2];
+
+    // Allocate memory for the longest common subsequence
+    char* subsequence = (char*)malloc((*length + 1) * sizeof(char));
+
+    // Build the longest common subsequence
+    int i = len1, j = len2, index = *length;
+    while (i > 0 && j > 0) {
+        if (str1[i - 1] == str2[j - 1]) {
+            subsequence[index - 1] = str1[i - 1];
+            i--;
+            j--;
+            index--;
+        } else if (dp[i - 1][j] > dp[i][j - 1]) {
+            i--;
+        } else {
+            j--;
         }
     }
+
+    // Null-terminate the subsequence
+    subsequence[*length] = '\0';
+
+    return subsequence;
 }
 
 int main() {
-    const int numHotels = 3; 
-    Hotel hotels[numHotels];
+    const char* str1 = "AGGTAB";
+    const char* str2 = "GXTXAYB";
 
+    int length;
+    const char* subsequence = longestCommonSubsequence(str1, str2, &length);
 
-    for (int i = 0; i < numHotels; ++i) {
-        printf("Enter details for hotel %d:\n", i + 1);
-        printf("Name: ");
-        scanf("%s", hotels[i].name);
-        printf("Address: ");
-        scanf("%s", hotels[i].address);
-        printf("Grade: ");
-        scanf("%d", &hotels[i].grade);
-        printf("Number of Rooms: ");
-        scanf("%d", &hotels[i].numRooms);
-        printf("Room Charges: ");
-        scanf("%f", &hotels[i].roomCharges);// Define the structure for a hotel
+    printf("Longest Common Subsequence: %s\n", subsequence);
+    printf("Length of LCS: %d\n", length);
 
-        printf("\n");
-    }
-
-    int targetGrade;
-    printf("Enter the grade to search for hotels: ");
-    scanf("%d", &targetGrade);
-    grade(hotels, numHotels, targetGrade);
-
-    float maxRoomCharge;
-    printf("Enter the maximum room charge: ");
-    scanf("%f", &maxRoomCharge);
-    lessThanCharge(hotels, numHotels, maxRoomCharge);
+    // Free the allocated memory for the subsequence
+    free((void*)subsequence);
 
     return 0;
 }

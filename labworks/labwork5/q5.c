@@ -1,17 +1,23 @@
-/*
-Question: You know the size of an integer array. Can you find the number of elements in it? How?
-*/
+#include<stdio.h>
+#include<math.h>
 
-#include <stdio.h>
-
-int main() {
-    int array[] = {1, 2, 3, 4, 5};
-
-    // Calculate the number of elements
-    int numberOfElements = sizeof(array) / sizeof(array[0]);
-
-    // Print the result
-    printf("Number of elements in the array: %d\n", numberOfElements);
-
-    return 0;
+int main()
+{
+	int time;
+	float principle,rate;
+	printf("Enter the time in years:-\n");
+	scanf("%d",&time);
+	printf("Enter the principle amount:-\n");
+	scanf("%f",&principle);
+	printf("enter the rate :-\n");
+	scanf("%f",&rate);
+	
+	float SI,CI;
+	SI=principle*rate*time;
+	CI=principle*(pow(1+rate,time)-1);
+	printf("Simple interest:-%f\n",SI);
+	printf("Compound interest:-%f\n",CI);
+	
+	return 0;
 }
+

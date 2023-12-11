@@ -1,50 +1,24 @@
 #include <stdio.h>
-typedef struct
-{
-    int hr;
-    int min;
-    int sec;
-} Time;
-int main()
-{
-    Time st, et;
-    printf("Enter start time (hh:mm:ss): ");
-    scanf("%d:%d:%d", &st.hr, &st.min, &st.sec);
 
-    printf("Enter end time (hh:mm:ss): ");
-    scanf("%d:%d:%d", &et.hr, &et.min, &et.sec);
-    if (st.hr>et.hr)
-    {
-        return 1;
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
     }
-    else if (st.hr== et.hr && st.min>et.min)
-    {
-        return 1;
-    }
-    else if (st.min== et.min && st.sec>et.sec)
-    {
-        return 1;
-    }
-    
-    
+    return a;
+}
 
-    while (st.hr < et.hr ||(st.hr == et.hr && st.min < et.min) || (st.hr == et.hr && st.min == et.min && st.sec < et.sec))
-    {
-        printf("GOOD DAY\n");
+int main() {
+    int num1, num2;
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
 
-        st.sec++;
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
 
-        if (st.sec == 60)
-        {
-            st.sec = 0;
-            st.min++;
-        }
-        if (st.min == 60)
-        {
-            st.min = 0;
-            st.hr++;
-        }
-    }
+    int result = gcd(num1, num2);
+    printf("GCD of %d and %d is: %d\n", num1, num2, result);
 
     return 0;
 }

@@ -1,24 +1,27 @@
+/*
+Question: Display elements of an array in a triangle pattern using formatting for uniform display. Take array input from the user.
+*/
+
 #include <stdio.h>
 
-int gcd(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}
+#define SIZE 5
 
 int main() {
-    int num1, num2;
-    printf("Enter the first number: ");
-    scanf("%d", &num1);
+    int A[SIZE];
 
-    printf("Enter the second number: ");
-    scanf("%d", &num2);
+    // Input elements of the array
+    printf("Enter %d integers:\n", SIZE);
+    for (int i = 0; i < SIZE; ++i) {
+        scanf("%d", &A[i]);
+    }
 
-    int result = gcd(num1, num2);
-    printf("GCD of %d and %d is: %d\n", num1, num2, result);
+    // Display elements in a triangle pattern
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j <= i; ++j) {
+            printf("%-4d", A[j]);  // Using formatting for uniform display
+        }
+        printf("\n");
+    }
 
     return 0;
 }

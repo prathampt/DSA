@@ -1,27 +1,27 @@
-/*
-Question: Write a program that calculates the sum of squares of the elements of an integer array of size 10.
-*/
-
 #include <stdio.h>
-#define size 10
 
-int main() {
-    int arr[size];
-    int sumOfSquares = 0;
+int main()
+{
+	int store[10];
+	int item;
+	for (int i = 0; i < 10; i = i + 1)
+	{
+		scanf("%d", &item);
+		store[i] = item;
+	}
+	int count = 0;
 
-    // Input elements of the array
-    printf("Enter 10 integers:\n");
-    for (int i = 0; i < size; ++i) {
-        scanf("%d", &arr[i]);
-    }
+	for (int i = 0; i < 3; i = i + 1)
+	{
+		for (int j = 0; j < 3; j = j + 1)
+		{
+			printf("%d ,", store[count]);
+			count = count + 1;
+		}
+		printf("\n");
+	}
 
-    // Calculate the sum of squares
-    for (int i = 0; i < size; ++i) {
-        sumOfSquares += arr[i] * arr[i];
-    }
+	printf("%d ,", store[count]);
 
-    // Print the result
-    printf("Sum of squares: %d\n", sumOfSquares);
-
-    return 0;
+	return 0;
 }

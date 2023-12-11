@@ -1,44 +1,34 @@
-/*
-Question: Create a new array of size 10 having elements of two sorted arrays in sorted order.
-*/
+#include<stdio.h>
 
-#include <stdio.h>
-
-void mergeArrays(int A[], int B[], int C[]) {
-    int i = 0, j = 0, k = 0;
-
-    while (i < 5 && j < 5) {
-        if (A[i] <= B[j]) {
-            C[k++] = A[i++];
-        } else {
-            C[k++] = B[j++];
-        }
-    }
-
-    // Copy the remaining elements of A, if any
-    while (i < 5) {
-        C[k++] = A[i++];
-    }
-
-    // Copy the remaining elements of B, if any
-    while (j < 5) {
-        C[k++] = B[j++];
-    }
+int main()
+{
+	char c;
+	printf("Enter a character:-\n");
+	scanf("%c",&c);
+	int a=(int)c;
+	
+	printf("The ASCII value of the character is %d\n",a);
+	if (((65<=a)&&(a<=90))||((97<=a)&&(a<=122)))
+	{
+		if ((65<=a)&&(a<=97))
+		{	
+			printf("The entered character is uppercase alphabet./n");
+			
+		}
+		else if ((97<=a)&&(a<=122))
+		{
+			printf("The entered character is lowercase alphabet./n");
+		}
+	}
+	else if ((48<=a)&&(a<=57))
+	{
+		printf("The entered character is a digit.\n");
+	}
+	else
+	{
+		printf("the entered charactir is a special charcter.\n");	
+	}
+	
+	return 0;
 }
-
-int main() {
-    int A[] = {45, 50, 70, 85, 90};
-    int B[] = {30, 40, 60, 75, 80};
-    int C[10];
-
-    // Merge the arrays A and B into C
-    mergeArrays(A, B, C);
-
-    // Display the merged array C
-    printf("Merged array C:\n");
-    for (int i = 0; i < 10; ++i) {
-        printf("%d ", C[i]);
-    }
-
-    return 0;
-}
+	

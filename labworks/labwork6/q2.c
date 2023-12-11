@@ -1,49 +1,26 @@
+/*
+Question: Display array elements in reverse order (from last to first) using a macro for array size.
+*/
+
 #include <stdio.h>
-#include <string.h>
 
-char *my_strtok(char *str, const char *delimiters) {
-    static char *lastToken = NULL; 
-
-    if (str == NULL && lastToken != NULL) {
-        str = lastToken;
-    } else if (str == NULL) {
-        return NULL; 
-    }
-
-    while (*str != '\0' && strchr(delimiters, *str) != NULL) {
-        ++str;
-    }
-
-    if (*str == '\0') {
-        lastToken = NULL;
-        return NULL;
-    }
-
-    char *token = str;
-    while (*str != '\0' && strchr(delimiters, *str) == NULL) {
-        ++str;
-    }
-
-    if (*str == '\0') {
-        lastToken = NULL;
-    } else {
-        *str = '\0';
-        lastToken = str + 1;
-    }
-
-    return token;
-}
+#define SIZE 10
 
 int main() {
-    char str[] = "This,is,a,sample,string,which,I,am,as,a,coder,giving,to,my,code,to,test,does,it,work,or,not,!";
-    const char delimiters[] = ",";
+    int arr[SIZE];
 
-    // Tokenize the string using my_strtok
-    char *token = my_strtok(str, delimiters);
-    while (token != NULL) {
-        printf("Token: %s\n", token);
-        token = my_strtok(NULL, delimiters);
+    // Input elements of the array
+    printf("Enter %d integers:\n", SIZE);
+    for (int i = 0; i < SIZE; ++i) {
+        scanf("%d", &arr[i]);
     }
+
+    // Display array elements in reverse order
+    printf("Array elements in reverse order:\n");
+    for (int i = SIZE - 1; i >= 0; --i) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
     return 0;
 }

@@ -1,41 +1,24 @@
-/*
-Question: Write a program to search for an element accepted from the user in an array of floating-point values of size 50.
-Display the index if the element is found, else display the message "Not Found."
-*/
+#include<stdio.h>
 
-#include <stdio.h>
-
-#define SIZE 50
-
-int main() {
-    float arr[SIZE];
-    float searchElement;
-
-    // Input elements of the array
-    printf("Enter %d floating-point values:\n", SIZE);
-    for (int i = 0; i < SIZE; ++i) {
-        scanf("%f", &arr[i]);
-    }
-
-    // Input element to search
-    printf("Enter the element to search: ");
-    scanf("%f", &searchElement);
-
-    // Search for the element in the array
-    int index = -1;  // Default value if the element is not found
-    for (int i = 0; i < SIZE; ++i) {
-        if (arr[i] == searchElement) {
-            index = i;
-            break;  // Element found, exit the loop
-        }
-    }
-
-    // Display the result
-    if (index != -1) {
-        printf("Element found at index %d\n", index);
-    } else {
-        printf("Not Found\n");
-    }
-
-    return 0;
+int main()
+{
+	char string[30];
+	fgets(string,30,stdin);
+	
+	int i=0;
+	int count;
+	while(string[i]!='\0')
+	{
+		char c=string[i];
+		int a=(int)c;
+		if ((a==65)||(a==69)||(a==73)||(a==79)||(a==85)||(a==97)||(a==101)||(a==105)||(a==111)||(a==117))
+		{
+			count=count+1;
+		}
+		i=i+1;
+	}
+	
+	printf("The number of vowels in the entered string are %d\n",count);
+	return 0;
 }
+

@@ -1,41 +1,51 @@
 /*
-Question: Write a function to convert a decimal number to a binary number and return the binary
-representation in a string.
+Question: Write C program to shift all elements of an array by n locations to right or left in
+circular fashion. Take all inputs from user.
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
-char* decimalToBinary(int decimal) {
-    int bits = 0;
-    int temp = decimal;
+void circularShiftRight(int arr[], int size, int n) {
+    int temp;
 
-    while (temp > 0) {
-        bits++;
-        temp /= 2;
+    n = n % size;
+
+    for (int i = 0; i < n; ++i) {
+        temp = arr[size - 1];
+        for (int j = size - 1; j > 0; --j) {
+            arr[j] = arr[j - 1];
+        }
+        arr[0] = temp;
     }
-
-    char* binary = (char*)malloc((bits + 1) * sizeof(char));
-
-    for (int i = bits - 1; i >= 0; i--) {
-        binary[i] = (decimal % 2) + '0';
-        decimal /= 2;
-    }
-
-    binary[bits] = '\0';
-
-    return binary;
 }
 
 int main() {
-    int decimal;
-    printf("Enter a decimal number: ");
-    scanf("%d", &decimal);
+    int size, n;
 
-    char* binary = decimalToBinary(decimal);
-    printf("Binary representation: %s\n", binary);
+    // Input array size
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
 
-    free(binary);
+    int arr[size];
+
+    // Input array elements
+    printf("Enter %d integers for the array:\n", size);
+    for (int i = 0; i < size; ++i) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Input shift count
+    printf("Enter the number of locations to shift (positive for right, negative for left): ");
+    scanf("%d", &n);
+
+    // Perform circular shift
+    circularShiftRight(arr, size, n);
+
+    // Display the shifted array
+    printf("Array after circular shift:\n");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", arr[i]);
+    }
 
     return 0;
 }

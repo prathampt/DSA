@@ -1,41 +1,37 @@
-/*
-Question: Reverse elements of an array without using an additional array.
-*/
+#include<stdio.h>
 
-#include <stdio.h>
-
-void reverseArray(int arr[], int size) {
-    for (int i = 0, j = size - 1; i < j; ++i, --j) {
-        // Swap elements at positions i and j
-        arr[i] = arr[i] + arr[j];
-        arr[j] = arr[i] - arr[j];
-        arr[i] = arr[i] - arr[j];
-    }
+int main()
+{
+	int i=1;
+	while(i==1)
+	{
+		char c;
+		printf("Enter a character.Enter * to exit:-\n");
+		scanf("%c",&c);
+		int a=(int)c;
+		printf("The ASCII value of the character is %d\n",a);
+		if ((65<=a)&&(a<=90))
+		{
+			int b=a+32;
+			printf("Corrosponding alphabet in lowercase is %c\n",(char)b);
+		}
+		else if ((97<=a)&&(a<=122))
+		{
+			int b=a-32;
+			printf("Corrosponding alphabet in uppercase is %c\n",(char)b);
+		}
+		
+		else if (c=='*')
+		{
+			printf("exiting the program.\n");
+			i=-1;
+		}
+		else
+		{
+			i=1;
+		}
+	}
+	return 0;
 }
 
-int main() {
-    int size;
-
-    // Input array size
-    printf("Enter the size of the array: ");
-    scanf("%d", &size);
-
-    int arr[size];
-
-    // Input array elements
-    printf("Enter %d integers for the array:\n", size);
-    for (int i = 0; i < size; ++i) {
-        scanf("%d", &arr[i]);
-    }
-
-    // Reverse the array
-    reverseArray(arr, size);
-
-    // Display the reversed array
-    printf("Reversed array:\n");
-    for (int i = 0; i < size; ++i) {
-        printf("%d ", arr[i]);
-    }
-
-    return 0;
-}
+		

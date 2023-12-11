@@ -1,71 +1,41 @@
+/*
+Question: Write a function to convert a decimal number to a binary number and return the binary
+representation in a string.
+*/
+
 #include <stdio.h>
+#include <stdlib.h>
 
-// Define the structure for date
-typedef struct
-{
-    int day;
-    int month;
-    int year;
-} Date;
+char* decimalToBinary(int decimal) {
+    int bits = 0;
+    int temp = decimal;
 
-int isValidDate(Date d)
-{
-    int isLeapYear = ((d.year % 4 == 0 && d.year % 100 != 0) || (d.year % 400 == 0));
-
-    if (d.month < 1 || d.month > 12)
-    {
-        return 0;
+    while (temp > 0) {
+        bits++;
+        temp /= 2;
     }
 
-    if (d.day < 1)
-    {
-        return 0;
+    char* binary = (char*)malloc((bits + 1) * sizeof(char));
+
+    for (int i = bits - 1; i >= 0; i--) {
+        binary[i] = (decimal % 2) + '0';
+        decimal /= 2;
     }
 
-    switch (d.month)
-    {
-    case 1:
-    case 3:
-    case 5:
-    case 7:
-    case 8:
-    case 10:
-    case 12:
-        return (d.day <= 31);
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-        return (d.day <= 30);
-    case 2:
-        return (isLeapYear ? d.day <= 29 : d.day <= 28);
-    default:
-        return 0; // Invalid month
-    }
+    binary[bits] = '\0';
+
+    return binary;
 }
 
-void printDate(Date d)
-{
-    printf("Date: %02d/%02d/%04d\n", d.day, d.month, d.year);
-}
+int main() {
+    int decimal;
+    printf("Enter a decimal number: ");
+    scanf("%d", &decimal);
 
-int main()
-{
+    char* binary = decimalToBinary(decimal);
+    printf("Binary representation: %s\n", binary);
 
-    Date inputDate;
-
-    printf("Enter the date (dd/mm/yyyy): ");
-    scanf("%d/%d/%d", &inputDate.day, &inputDate.month, &inputDate.year);
-
-    if (isValidDate(inputDate))
-    {
-        printf("Valid ");
-        printDate(inputDate);
-    }
-    else
-    {
-        printf("Invalid date entered.\n");
-    }
+    free(binary);
 
     return 0;
 }

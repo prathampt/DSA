@@ -1,28 +1,17 @@
+/*
+Question: You know the size of an integer array. Can you find the number of elements in it? How?
+*/
+
 #include <stdio.h>
 
-int gcd(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}
-
-int lcm(int a, int b){
-    return a * b / gcd(a, b);
-}
-
 int main() {
-    int num1, num2;
-    printf("Enter the first number: ");
-    scanf("%d", &num1);
+    int array[] = {1, 2, 3, 4, 5};
 
-    printf("Enter the second number: ");
-    scanf("%d", &num2);
+    // Calculate the number of elements
+    int numberOfElements = sizeof(array) / sizeof(array[0]);
 
-    int result = lcm(num1, num2);
-    printf("LCM of %d and %d is: %d\n", num1, num2, result);
+    // Print the result
+    printf("Number of elements in the array: %d\n", numberOfElements);
 
     return 0;
 }

@@ -1,66 +1,41 @@
+/*
+Question: Write a program to search for an element accepted from the user in an array of floating-point values of size 50.
+Display the index if the element is found, else display the message "Not Found."
+*/
+
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-// Function to find the longest common subsequence
-const char* longestCommonSubsequence(const char* str1, const char* str2, int* length) {
-    int len1 = strlen(str1);
-    int len2 = strlen(str2);
-
-    // Create a 2D array to store the length of common subsequences
-    int dp[len1 + 1][len2 + 1];
-
-    // Build the dp array
-    for (int i = 0; i <= len1; ++i) {
-        for (int j = 0; j <= len2; ++j) {
-            if (i == 0 || j == 0)
-                dp[i][j] = 0;
-            else if (str1[i - 1] == str2[j - 1])
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-            else
-                dp[i][j] = (dp[i - 1][j] > dp[i][j - 1]) ? dp[i - 1][j] : dp[i][j - 1];
-        }
-    }
-
-    // Length of the longest common subsequence
-    *length = dp[len1][len2];
-
-    // Allocate memory for the longest common subsequence
-    char* subsequence = (char*)malloc((*length + 1) * sizeof(char));
-
-    // Build the longest common subsequence
-    int i = len1, j = len2, index = *length;
-    while (i > 0 && j > 0) {
-        if (str1[i - 1] == str2[j - 1]) {
-            subsequence[index - 1] = str1[i - 1];
-            i--;
-            j--;
-            index--;
-        } else if (dp[i - 1][j] > dp[i][j - 1]) {
-            i--;
-        } else {
-            j--;
-        }
-    }
-
-    // Null-terminate the subsequence
-    subsequence[*length] = '\0';
-
-    return subsequence;
-}
+#define SIZE 50
 
 int main() {
-    const char* str1 = "AGGTAB";
-    const char* str2 = "GXTXAYB";
+    float arr[SIZE];
+    float searchElement;
 
-    int length;
-    const char* subsequence = longestCommonSubsequence(str1, str2, &length);
+    // Input elements of the array
+    printf("Enter %d floating-point values:\n", SIZE);
+    for (int i = 0; i < SIZE; ++i) {
+        scanf("%f", &arr[i]);
+    }
 
-    printf("Longest Common Subsequence: %s\n", subsequence);
-    printf("Length of LCS: %d\n", length);
+    // Input element to search
+    printf("Enter the element to search: ");
+    scanf("%f", &searchElement);
 
-    // Free the allocated memory for the subsequence
-    free((void*)subsequence);
+    // Search for the element in the array
+    int index = -1;  // Default value if the element is not found
+    for (int i = 0; i < SIZE; ++i) {
+        if (arr[i] == searchElement) {
+            index = i;
+            break;  // Element found, exit the loop
+        }
+    }
+
+    // Display the result
+    if (index != -1) {
+        printf("Element found at index %d\n", index);
+    } else {
+        printf("Not Found\n");
+    }
 
     return 0;
 }

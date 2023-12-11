@@ -1,37 +1,27 @@
 /*
-Question: Write a function to count the number of occurrences of a character in a string.
+Question: Write a program that calculates the sum of squares of the elements of an integer array of size 10.
 */
 
 #include <stdio.h>
-
-int countOccurrences(char str[], char target) {
-    int count = 0;
-
-    for (int i = 0; str[i] != '\0'; ++i) {
-        if (str[i] == target) {
-            count++;
-        }
-    }
-
-    return count;
-}
+#define size 10
 
 int main() {
-    char str[100], target;
+    int arr[size];
+    int sumOfSquares = 0;
 
-    // Input string
-    printf("Enter a string: ");
-    fgets(str, sizeof(str), stdin);
+    // Input elements of the array
+    printf("Enter 10 integers:\n");
+    for (int i = 0; i < size; ++i) {
+        scanf("%d", &arr[i]);
+    }
 
-    // Input target character
-    printf("Enter the character to count: ");
-    scanf(" %c", &target);
+    // Calculate the sum of squares
+    for (int i = 0; i < size; ++i) {
+        sumOfSquares += arr[i] * arr[i];
+    }
 
-    // Count the number of occurrences
-    int occurrences = countOccurrences(str, target);
+    // Print the result
+    printf("Sum of squares: %d\n", sumOfSquares);
 
-    // Display the result
-    printf("Number of occurrences of '%c' in the string: %d\n", target, occurrences);
-
-    return 1;
+    return 0;
 }

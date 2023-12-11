@@ -1,25 +1,40 @@
-/*
-Question: Generate ten random numbers in the range [1, 100] using the rand() function.
-Initialize an array of integers with values ranging from 50 to 100 (both inclusive) and display the contents.
-*/
+#include<stdio.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-int main() {
-    int array[10];
-    
-    // Seed the random number generator
-    srand(time(NULL));
-
-    printf("Initializing array with values ranging from 50 to 100 (inclusive):\n");
-
-    // Initialize array with random values in the range [50, 100]
-    for (int i = 0; i < 10; ++i) {
-        array[i] = rand() % 51 + 50;  // Generates a random number in the range [50, 100]
-        printf("%d\n", array[i]);
-    }
-
-    return 0;
+int main()
+{
+	char c1[10],c2[10],c3[10];
+	float r1,r2,r3;
+	float cost1,cost2,cost3;
+	int amount1,amount2,amount3;
+	float totcost;
+	
+	printf("Enter the 3 commodities you want to buy:-\n");
+	fgets(c1,10,stdin);
+	fgets(c2,10,stdin);
+	fgets(c3,10,stdin);
+	
+	printf("Enter the rates of following commodites in same order as they are ordered respectively:-\n");
+	scanf("%f %f %f",&r1,&r2,&r3);
+	
+	printf("Entetr the amounts of each commodities in same order as they are ordered repectively:-\n");
+	scanf("%d %d %d",&amount1,&amount2,&amount3);
+	
+	cost1=r1*amount1;
+	cost2=r2*amount2;
+	cost3=r3*amount3;
+	
+	totcost=cost1+cost2+cost3;
+	
+	printf("*****************BILL******************\n");
+	printf("Item     Quantity       Price      Amount\n");
+	printf("%s        %d            %f          %f\n",c1,amount1,r1,cost1);
+	printf("%s        %d            %f          %f\n",c2,amount2,r2,cost2);
+	printf("%s        %d            %f          %f\n",c3,amount3,r3,cost3);
+	printf("Total Amount to be paid:-           %f\n",totcost);
+	
+	return 0;
 }
+
+	
+	
+	

@@ -1,34 +1,24 @@
+/*
+Question: Generate ten random numbers in the range [1, 100] using the rand() function.
+Initialize an array of integers with values ranging from 50 to 100 (both inclusive) and display the contents.
+*/
+
 #include <stdio.h>
-#include <ctype.h>
-
-int deriveInteger(const char *str) {
-    int result = 0;
-
-    while (*str != '\0') {
-        if (isdigit(*str)) {
-            result = result * 10 + (*str - '0');
-        } else {
-            return 0;
-        }
-
-        str++;
-    }
-
-    return result;
-}
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
-    char inputString[100];
-
-    printf("Enter a string: ");
-    scanf("%s", inputString);
-
-    int result = deriveInteger(inputString);
+    int array[10];
     
-    if (result != 0) {
-        printf("Derived integer: %d\n", result);
-    } else {
-        printf("The string does not represent a valid integer.\n");
+    // Seed the random number generator
+    srand(time(NULL));
+
+    printf("Initializing array with values ranging from 50 to 100 (inclusive):\n");
+
+    // Initialize array with random values in the range [50, 100]
+    for (int i = 0; i < 10; ++i) {
+        array[i] = rand() % 51 + 50;  // Generates a random number in the range [50, 100]
+        printf("%d\n", array[i]);
     }
 
     return 0;
