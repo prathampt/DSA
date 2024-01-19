@@ -74,7 +74,7 @@ char * infixToPostfix(char * str, int n){
         }
 
         answer[j++] = c;
-        if (!isalnum(str[++i])) answer[j++] = ' ';
+        if (!isalnum(str[++i]) && str[i] != '.') answer[j++] = ' ';
     }
 
     while (!isEmpty(s)){
