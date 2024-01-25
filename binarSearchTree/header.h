@@ -6,7 +6,7 @@ typedef struct node{
 
 typedef Node * Tree;
 
-void init(Tree t);
+void init(Tree * t);
 Node * generateNode(int data);
 
 /*
@@ -19,6 +19,6 @@ void postorderTraversal(Tree t);
 
 int count(Tree t); // This counts the number of nodes in the tree...
 
-void insert(Tree t, int data);
+void insert(Tree *t, int data);
 int search(Tree t, int data);
 // void delete(Tree t, int data);

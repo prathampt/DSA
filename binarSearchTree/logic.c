@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "header.h"
 
-void init(Tree t){
+void init(Tree *t){
     *t = NULL;
     return;
 }
@@ -20,7 +20,7 @@ Node * generateNode(int data){
 }
 
 void preorderTraversal(Tree t){ // NLR...
-    if (!*t) return;
+    if (!t) return;
 
     printf("%d ", t->data);
     preorderTraversal(t->left);
@@ -30,7 +30,7 @@ void preorderTraversal(Tree t){ // NLR...
 }
 
 void inorderTraversal(Tree t){ // LNR...
-    if (!*t) return;
+    if (!t) return;
 
     inorderTraversal(t->left);
     printf("%d ", t->data);
@@ -40,7 +40,7 @@ void inorderTraversal(Tree t){ // LNR...
 }
 
 void postorderTraversal(Tree t){ // LRN...
-    if (!*t) return;
+    if (!t) return;
 
     postorderTraversal(t->left);
     postorderTraversal(t->right);
@@ -50,15 +50,18 @@ void postorderTraversal(Tree t){ // LRN...
 }
 
 int count(Tree t){ // This counts the number of nodes in the tree...
-    if (!*t) return 0;
+    if (!t) return 0;
 
     return 1 + count(t->left) + count(t->right);
 }
 
-void insert(Tree t, int data){
-    if (!*t) return;
+void insert(Tree *t, int data){
+    if (!*t){
+        *t = generateNode(data);
+        return;
+    }
 
-    Node *p = t, *q = NULL;
+    Node *p = *t, *q = NULL;
 
     while (p)
     {
@@ -82,7 +85,7 @@ void insert(Tree t, int data){
 }
 
 int search(Tree t, int data){
-    if (!*t) return 0;
+    if (!t) return 0;
 
     if (t->data == data) return 1;
 
