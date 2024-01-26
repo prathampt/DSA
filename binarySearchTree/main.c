@@ -26,7 +26,10 @@ int main()
     printf("\n");
     printf("The number of nodes is %d\n", count(t));
 
-    delete(&t, 2);
+    int d;
+    printf("Enter the number to be deleted: ");
+    scanf("%d", &d);
+    delete(&t, d);
     printf("After deletion:\n");
     printf("Preorder: ");
     preorderTraversal(t);

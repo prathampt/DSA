@@ -149,21 +149,21 @@ void delete(Tree *t, int data)
     // Handling the case when the node to be deleted has no child...
     if (p->left == NULL && p->right == NULL){
         free(p);
-        if (direction == 'r') q->right == NULL;
-        else q->left == NULL;
+        if (direction == 'r') q->right = NULL;
+        else q->left = NULL;
         return;
     }
 
     // Handling the case when the node has only one child...
     if (p->left == NULL){
-        if (direction == 'r') q->right == p->right;
-        else q->left == p->right;
+        if (direction == 'r') q->right = p->right;
+        else q->left = p->right;
         free(p);
         return;
     }
     if (p->right == NULL){
-        if (direction == 'r') q->right == p->left;
-        else q->left == p->left;
+        if (direction == 'r') q->right = p->left;
+        else q->left = p->left;
         free(p);
         return;
     }
@@ -183,6 +183,6 @@ void delete(Tree *t, int data)
     if (direction == 'l') r->left = q->right;
     else r->right = q->right;
     free(q);
-    
+
     return;   
 }
