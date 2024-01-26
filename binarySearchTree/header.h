@@ -1,13 +1,14 @@
-typedef struct node{
+typedef struct node
+{
     int data;
-    struct node * left;
-    struct node * right;
+    struct node *left;
+    struct node *right;
 } Node;
 
-typedef Node * Tree;
+typedef Node *Tree;
 
-void init(Tree * t);
-Node * generateNode(int data);
+void init(Tree *t);
+Node *generateNode(int data);
 
 /*
 Traversal Algorithms...
@@ -21,4 +22,4 @@ int count(Tree t); // This counts the number of nodes in the tree...
 
 void insert(Tree *t, int data);
 int search(Tree t, int data);
-// void delete(Tree t, int data);
+void delete(Tree *t, int data);
