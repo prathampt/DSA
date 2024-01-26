@@ -134,6 +134,7 @@ void removeNode(Tree *t, int MIS)
         q = q->left;
     }
     p->MIS = q->MIS;
+    p->name = q->name;
     if (direction == 'l')
         r->left = q->right;
     else
