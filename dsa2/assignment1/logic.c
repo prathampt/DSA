@@ -94,6 +94,13 @@ void removeNode(Tree *t, int MIS)
     // Handling the case when the node to be deleted has no child...
     if (p->left == NULL && p->right == NULL)
     {
+        if (p == q)
+        {
+            *t == NULL;
+            free(p);
+            printf("The tree is empty now...\n");
+            return;
+        }
         free(p);
         if (direction == 'r')
             q->right = NULL;
@@ -105,19 +112,35 @@ void removeNode(Tree *t, int MIS)
     // Handling the case when the node has only one child...
     if (p->left == NULL)
     {
-        if (direction == 'r')
-            q->right = p->right;
+        if (p == q)
+        {
+            *t = p->right;
+            printf("The root is replaced by %d\n", p->right->MIS);
+        }
         else
-            q->left = p->right;
+        {
+            if (direction == 'r')
+                q->right = p->right;
+            else
+                q->left = p->right;
+        }
         free(p);
         return;
     }
     if (p->right == NULL)
     {
-        if (direction == 'r')
-            q->right = p->left;
+        if (p == q)
+        {
+            *t = p->left;
+            printf("The root is replaced by %d\n", p->left->MIS);
+        }
         else
-            q->left = p->left;
+        {
+            if (direction == 'r')
+                q->right = p->left;
+            else
+                q->left = p->left;
+        }
         free(p);
         return;
     }
@@ -135,6 +158,10 @@ void removeNode(Tree *t, int MIS)
     }
     p->MIS = q->MIS;
     p->name = q->name;
+    if (p == *t)
+    {
+        printf("The root is replaced by %d\n", q->MIS);
+    }
     if (direction == 'l')
         r->left = q->right;
     else
