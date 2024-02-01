@@ -96,7 +96,7 @@ void removeNode(Tree *t, int MIS)
     {
         if (p == q)
         {
-            *t == NULL;
+            *t = NULL;
             free(p);
             printf("The tree is empty now...\n");
             return;
