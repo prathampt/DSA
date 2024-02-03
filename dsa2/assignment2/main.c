@@ -3,18 +3,21 @@
 int main()
 {
     Tree t;
-    init_bst(&t, 4);
+    init_bst(&t, 7);
 
-    insert_bst(&t, 10);
-    insert_bst(&t, 9);
-    insert_bst(&t, 8);
-    insert_bst(&t, 11);
+    insert_bst(&t, 60);
+    insert_bst(&t, 50);
+    insert_bst(&t, 65);
+    insert_bst(&t, 45);
+    insert_bst(&t, 55);
+    insert_bst(&t, 63);
+    insert_bst(&t, 70);
 
-    for (int i = 0; i < t.size; i++)
-    {
-        printf("%d ", t.T[i]);
-    }
-
+    printf("Level-wise Printing: ");
+    levelwise(t);
+    printf("\n");
+    printf("Inorder Printing: ");
+    inorder(t);
     printf("\n");
 
     return 0;
