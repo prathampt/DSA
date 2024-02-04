@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <math.h>
 #include "header.h"
 #include "stack.c"
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 void init_bst(Tree *t, int n)
 {
@@ -71,10 +73,11 @@ void inorder(Tree t)
     while (!isEmpty(s))
     {
         i = peek(s);
-        if (t.T[k] == INT_MIN || i >= k)
+        if (t.T[i] == INT_MIN || i >= k)
         {
             pop(&s);
-            if (isEmpty(s)) continue;
+            if (isEmpty(s))
+                break;
             x = pop(&s);
             printf("%d ", t.T[x]);
             push(&s, x * 2 + 2);
@@ -107,14 +110,46 @@ void levelwise(Tree t)
         return;
     }
 
-    int n = t.length;
+    int n = t.size;
     int i = 0;
+    int j = 0, k = 1;
+    int levelCount = 1;
+    int treeHeight = height(t);
+
+    for (int z = 0; z < pow(2, (treeHeight - levelCount)) - 1; z++)
+    {
+        printf("    ");
+    }
+    printf("  ");
 
     while (i < n)
     {
+        if (j == k)
+        {
+            printf("\n\n");
+            levelCount++;
+            for (int z = 0; z < pow(2, (treeHeight - levelCount)) - 1; z++)
+            {
+                printf("    ");
+            }
+            if (treeHeight != levelCount - 1)
+                printf("  ");
+            j = 0;
+            k *= 2;
+        }
         if (t.T[i] == INT_MIN)
+        {
+            i++;
+            j++;
+            printf("    ");
             continue;
-        printf("%d ", t.T[i++]);
+        }
+        printf("%4d", t.T[i++]);
+        for (int z = 0; z < pow(2, (treeHeight - levelCount + 1)) - 1; z++)
+        {
+            printf("    ");
+        }
+        j++;
     }
     printf("\n");
 
@@ -122,6 +157,7 @@ void levelwise(Tree t)
 }
 
 // Check whether BST is a complete tree...
+// To be modified...
 int isComplete(Tree t)
 {
     int n = t.length;
@@ -135,4 +171,24 @@ int isComplete(Tree t)
     }
 
     return 1;
+}
+
+int levels(Tree t, int i)
+{
+
+    if (!t.T)
+        return 0;
+    if (t.length == 1)
+        return 0;
+    if (i >= t.size)
+        return 0;
+    if (t.T[i] == INT_MIN)
+        return 0;
+
+    return 1 + MAX(levels(t, 2 * i + 1), levels(t, 2 * i + 2));
+}
+
+int height(Tree t)
+{
+    return levels(t, 0) - 1;
 }
