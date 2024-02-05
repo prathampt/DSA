@@ -137,14 +137,15 @@ void levelwise(Tree t)
             j = 0;
             k *= 2;
         }
-        if (t.T[i] == INT_MIN)
+        if (t.T[i] != INT_MIN)
         {
-            i++;
-            j++;
-            printf("    ");
-            continue;
+            printf("%4d", t.T[i++]);
         }
-        printf("%4d", t.T[i++]);
+        else
+        {
+            printf("    ");
+            i++;
+        }
         for (int z = 0; z < pow(2, (treeHeight - levelCount + 1)) - 1; z++)
         {
             printf("    ");
@@ -157,11 +158,10 @@ void levelwise(Tree t)
 }
 
 // Check whether BST is a complete tree...
-// To be modified...
 int isComplete(Tree t)
 {
-    int n = t.length;
-    int i = 0;
+    int treeHeight = height(t);
+    int i = 0, n = pow(2, treeHeight) - 1;
 
     while (i < n)
     {

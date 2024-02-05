@@ -21,7 +21,6 @@ int main()
     insert_bst(&t, 75);
     insert_bst(&t, 85);
 
-
     printf("Level-wise Printing:\n");
     levelwise(t);
     printf("\n");
@@ -30,6 +29,8 @@ int main()
     printf("\n");
 
     printf("The height of the tree is %d\n", height(t));
+
+    printf("Is-Complete: %s\n", isComplete(t) == 1 ? "True" : "False");
 
     return 0;
 }
