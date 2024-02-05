@@ -51,12 +51,15 @@ void insert_bst(Tree *t, int data)
 
 void non_recursive_traverse(Tree t)
 {
-    printf("Inorder: ");
+    printf("Inorder Printing: ");
     inorder(t);
-    printf("Preorder: ");
+    printf("\n");
+    printf("Preorder Printing: ");
     preorder(t);
-    printf("Postorder: ");
+    printf("\n");
+    printf("Postorder Printing: ");
     postorder(t);
+    printf("\n");
 
     return;
 }
@@ -92,12 +95,62 @@ void inorder(Tree t)
 
     return;
 }
+
+// Preorder using only one stack...
 void preorder(Tree t)
-{
+{   
+    Stack s;
+    init(&s, t.length);
+    int i = 0;
+    int k = t.size;
+
+    printf("%d ", t.T[i]);
+    push(&s, 2 * i + 2);
+    i = 2 * i + 1;
+
+    while(!isEmpty(s) && i < k){
+        
+        while (i != INT_MIN && t.T[i] == INT_MIN && i < k){
+            i = pop(&s);
+        }
+        if (i == INT_MIN) break;
+        printf("%d ", t.T[i]);
+        push(&s, 2 * i + 2);
+        i = 2 * i + 1;
+    }
+
+    printf("\n");
     return;
 }
 void postorder(Tree t)
-{
+{   
+    Stack s1, s2;
+    init(&s1, t.length);
+    init(&s2, t.length + 2);
+
+    int i = 0, k = t.size;
+    push(&s1, i);
+
+    while (!isEmpty(s1) && i < k)
+    {
+        i = pop(&s1);
+        while (i != INT_MIN && i < k && t.T[i] == INT_MIN)
+        {
+            i = pop(&s1);
+        }
+        if (i == INT_MIN) break;
+        push(&s2, i);
+        push(&s1, 2 * i + 1);
+        push(&s1, 2 * i + 2);
+    }
+
+    while (!isEmpty(s2))
+    {
+        printf("%d ", t.T[pop(&s2)]);
+    }   
+
+    printf("\n");
+
     return;
 }
 

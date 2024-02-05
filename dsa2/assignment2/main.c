@@ -12,7 +12,7 @@ int main()
     insert_bst(&t, 40);
     insert_bst(&t, 60);
     insert_bst(&t, 80);
-    insert_bst(&t, 5);
+    insert_bst(&t, 15);
     insert_bst(&t, 25);
     insert_bst(&t, 35);
     insert_bst(&t, 45);
@@ -22,15 +22,16 @@ int main()
     insert_bst(&t, 85);
 
     printf("Level-wise Printing:\n");
+    printf("\n");
     levelwise(t);
-    printf("\n");
-    printf("Inorder Printing: ");
-    inorder(t);
-    printf("\n");
+
+    non_recursive_traverse(t);
 
     printf("The height of the tree is %d\n", height(t));
-
+    printf("\n");
+    
     printf("Is-Complete: %s\n", isComplete(t) == 1 ? "True" : "False");
+    printf("\n");
 
     return 0;
 }
