@@ -136,34 +136,56 @@ void delete(Tree *t, int data)
     while (p->data != data)
     {
         q = p;
-        if (p->data > data) {
+        if (p->data > data)
+        {
             p = p->left;
             direction = 'l'; // p is left child of q
         }
-        else  {
+        else
+        {
             p = p->right;
             direction = 'r'; // p is right child of q
         }
     }
-    
+
     // Handling the case when the node to be deleted has no child...
-    if (p->left == NULL && p->right == NULL){
+    if (p->left == NULL && p->right == NULL)
+    {
+        if (p == q)
+        {
+            *t = NULL;
+            free(p);
+            printf("The tree is empty now...\n");
+            return;
+        }
         free(p);
-        if (direction == 'r') q->right = NULL;
-        else q->left = NULL;
+        if (direction == 'r')
+            q->right = NULL;
+        else
+            q->left = NULL;
         return;
     }
 
     // Handling the case when the node has only one child...
-    if (p->left == NULL){
-        if (direction == 'r') q->right = p->right;
-        else q->left = p->right;
+    if (p->left == NULL)
+    {
+        if (p == q)
+            *t = p->right;
+        else if (direction == 'r')
+            q->right = p->right;
+        else
+            q->left = p->right;
         free(p);
         return;
     }
-    if (p->right == NULL){
-        if (direction == 'r') q->right = p->left;
-        else q->left = p->left;
+    if (p->right == NULL)
+    {
+        if (p == q)
+            *t = p->left;
+        else if (direction == 'r')
+            q->right = p->left;
+        else
+            q->left = p->left;
         free(p);
         return;
     }
@@ -180,9 +202,11 @@ void delete(Tree *t, int data)
         q = q->left;
     }
     p->data = q->data;
-    if (direction == 'l') r->left = q->right;
-    else r->right = q->right;
+    if (direction == 'l')
+        r->left = q->right;
+    else
+        r->right = q->right;
     free(q);
 
-    return;   
+    return;
 }
