@@ -10,6 +10,7 @@ int main(){
     insertNode(&T, "Vaishanavi");
     insertNode(&T, "Vaishnavi");
     insertNode(&T, "Rohit");
+    insertNode(&T, "Prajakta");
 
     printf("Tree:\n");
     traverse(T);
@@ -17,6 +18,10 @@ int main(){
     removeNode(&T, "Vaishnavi");
     removeNode(&T, "Pratham");
 
+    printf("Tree:\n");
+    traverse(T);
+    
+    insertNode( &T,"Akash");
     printf("Tree:\n");
     traverse(T);
 

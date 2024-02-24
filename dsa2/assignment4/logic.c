@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "header.h"
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 void init(AVLtree *t)
 {
@@ -30,44 +31,14 @@ void balanceFactor(Node *node)
     if (!node)
         return;
 
-    node->balancingFactor = 0;
+    node->balancingFactor = height(node->left) - height(node->right);
 
     while (node->parent)
     {
-        if (node->parent->left == node)
-        {
-            node->parent->balancingFactor += 1;
-        }
-        else
-        {
-            node->parent->balancingFactor -= 1;
-        }
-
         node = node->parent;
-    }
 
-    return;
-}
-
-void reverseBalanceFactor(Node *node)
-{
-    if (!node)
-        return;
-
-    node->balancingFactor = 0;
-
-    while (node->parent)
-    {
-        if (node->parent->left == node)
-        {
-            node->parent->balancingFactor -= 1;
-        }
-        else
-        {
-            node->parent->balancingFactor += 1;
-        }
-
-        node = node->parent;
+        int t = height(node->left) - height(node->right);
+        node->balancingFactor = t;
     }
 
     return;
@@ -78,6 +49,7 @@ void insertNode(AVLtree *t, char *name)
     if (!*t)
     {
         *t = generateNode(name);
+        balanceFactor(*t);
         return;
     }
 
@@ -115,6 +87,7 @@ void insertNode(AVLtree *t, char *name)
     p->parent = q;
 
     balanceFactor(p);
+    adjustImbalance(t, p->parent);
 
     return;
 }
@@ -157,8 +130,11 @@ void removeNode(AVLtree *t, char *name)
             q->right = NULL;
         else
             q->left = NULL;
-        reverseBalanceFactor(p);
         free(p);
+
+        balanceFactor(q);
+        adjustImbalance(t, q->parent);
+
         return;
     }
 
@@ -177,8 +153,11 @@ void removeNode(AVLtree *t, char *name)
             else
                 q->left = p->right;
         }
-        reverseBalanceFactor(p);
         free(p);
+
+        balanceFactor(q);
+        adjustImbalance(t, q->parent);
+
         return;
     }
     if (p->right == NULL)
@@ -195,8 +174,11 @@ void removeNode(AVLtree *t, char *name)
             else
                 q->left = p->left;
         }
-        reverseBalanceFactor(p);
         free(p);
+
+        balanceFactor(q);
+        adjustImbalance(t, q->parent);
+
         return;
     }
 
@@ -212,7 +194,8 @@ void removeNode(AVLtree *t, char *name)
         q = q->left;
     }
 
-    p->name = q->name;
+    strcpy(p->name, q->name);
+
     if (p == *t)
     {
         printf("The root is replaced by %s\n", q->name);
@@ -221,8 +204,11 @@ void removeNode(AVLtree *t, char *name)
         r->left = q->right;
     else
         r->right = q->right;
-    reverseBalanceFactor(q);
+
     free(q);
+
+    balanceFactor(r);
+    adjustImbalance(t, r->parent);
 
     return;
 }
@@ -239,23 +225,28 @@ void traverse(AVLtree t) // Display name, parent and the balancing factor of eac
     return;
 }
 
-void destroyTree(AVLtree *t){
-    if (!*t) return;
+void destroyTree(AVLtree *t)
+{
+    if (!*t)
+        return;
 
-    if (!(*t)->right && !(*t)->left){
+    if (!(*t)->right && !(*t)->left)
+    {
         free(*t);
         *t == NULL;
         return;
     }
 
-    if (!(*t)->right){
+    if (!(*t)->right)
+    {
         destroyTree(&(*t)->left);
         free(*t);
         *t == NULL;
         return;
     }
 
-    if (!(*t)->left){
+    if (!(*t)->left)
+    {
         destroyTree(&(*t)->right);
         free(*t);
         *t == NULL;
@@ -267,4 +258,112 @@ void destroyTree(AVLtree *t){
     free(*t);
     *t = NULL;
     return;
+}
+
+int height(AVLtree t)
+{
+    if (!t)
+        return 0;
+
+    return 1 + MAX(height(t->left), height(t->right));
+}
+
+void RL(AVLtree *t, Node *n)
+{
+    RR(t, n->left);
+    LL(t, n);
+    return;
+}
+
+void LR(AVLtree *t, Node *n)
+{
+    LL(t, n->right);
+    RR(t, n);
+    return;
+}
+
+void LL(AVLtree *t, Node *n)
+{
+    Node *temp = n->left;
+    n->left = temp->right;
+    if (n->left)
+        n->left->parent = n;
+
+    temp->right = n;
+    temp->parent = n->parent;
+    n->parent = temp;
+
+    if (temp->parent)
+    {
+        if (temp->parent->left == n)
+            temp->parent->left = temp;
+        else
+            temp->parent->right = temp;
+    }
+    else
+        *t = temp;
+    balanceFactor(n);
+    balanceFactor(temp);
+
+    return;
+}
+
+void RR(AVLtree *t, Node *n)
+{
+    Node *temp = n->right;
+    n->right = temp->left;
+    if (n->right)
+        n->right->parent = n;
+
+    temp->left = n;
+    temp->parent = n->parent;
+    n->parent = temp;
+
+    if (temp->parent)
+    {
+        if (temp->parent->right == n)
+            temp->parent->right = temp;
+        else
+            temp->parent->left = temp;
+    }
+    else
+        *t = temp;
+    balanceFactor(n);
+    balanceFactor(temp);
+
+    return;
+}
+
+void adjustImbalance(AVLtree *t, Node *n)
+{
+
+    if (!n)
+        return;
+
+    int bf = n->balancingFactor;
+
+    while (bf == 0 | bf == 1 | bf == -1)
+    {
+        n = n->parent;
+        if (!n)
+            return;
+        bf = n->balancingFactor;
+    }
+
+    if (bf == 2)
+    {
+        if (n->left->balancingFactor == -1)
+            RL(t, n);
+        else
+            LL(t, n);
+    }
+    else if (bf == -2)
+    {
+        if (n->right->balancingFactor == 1)
+            LR(t, n);
+        else
+            RR(t, n);
+    }
+
+    return adjustImbalance(t, n->parent);
 }
