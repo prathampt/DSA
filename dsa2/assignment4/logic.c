@@ -144,6 +144,7 @@ void removeNode(AVLtree *t, char *name)
         if (p == q)
         {
             *t = p->right;
+            p->right->parent = NULL;
             printf("The root is replaced by %s\n", p->right->name);
         }
         else
@@ -152,6 +153,8 @@ void removeNode(AVLtree *t, char *name)
                 q->right = p->right;
             else
                 q->left = p->right;
+
+            p->right->parent = q;
         }
         free(p);
 
@@ -165,6 +168,7 @@ void removeNode(AVLtree *t, char *name)
         if (p == q)
         {
             *t = p->left;
+            p->left->parent = NULL;
             printf("The root is replaced by %s\n", p->left->name);
         }
         else
@@ -173,6 +177,8 @@ void removeNode(AVLtree *t, char *name)
                 q->right = p->left;
             else
                 q->left = p->left;
+
+            p->left->parent = q;
         }
         free(p);
 
@@ -205,6 +211,9 @@ void removeNode(AVLtree *t, char *name)
     else
         r->right = q->right;
 
+    if (q->right)
+        q->right->parent = r;
+
     free(q);
 
     balanceFactor(r);
@@ -233,7 +242,7 @@ void destroyTree(AVLtree *t)
     if (!(*t)->right && !(*t)->left)
     {
         free(*t);
-        *t == NULL;
+        *t = NULL;
         return;
     }
 
@@ -241,7 +250,7 @@ void destroyTree(AVLtree *t)
     {
         destroyTree(&(*t)->left);
         free(*t);
-        *t == NULL;
+        *t = NULL;
         return;
     }
 
@@ -249,7 +258,7 @@ void destroyTree(AVLtree *t)
     {
         destroyTree(&(*t)->right);
         free(*t);
-        *t == NULL;
+        *t = NULL;
         return;
     }
 
