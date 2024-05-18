@@ -398,8 +398,6 @@ Happy exploring and coding! Keep smiling...
 
 ##  Getting Started
 
-***Requirements***
-
 ###  Installation
 
 1. Clone the DSA repository:
@@ -417,11 +415,7 @@ cd DSA
 
 ##  Contributing
 
-Contributions are welcome! Here are several ways you can contribute:
-
-- **[Submit Pull Requests](https://github.com/prathampt/DSA/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/prathampt/DSA/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/prathampt/DSA/issues)**: Submit bugs found or log feature requests for Dsa.
+Contributions are welcome!
 
 <details closed>
     <summary>Contributing Guidelines</summary>
