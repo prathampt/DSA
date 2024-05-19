@@ -79,12 +79,12 @@ int getDegree(Graph g, int vertex){
     return degree;    
 }
 
-int isConnected(Graph g){
+int isConnected(Graph g){ // Not correct function...
     int vertices = g.vertices;
 
     int i = 0, j = 0;
 
-    while (i < vertices){
+    while (i < vertices){ // Have to do proper DFS here, as this only tells us whether only one component is isolated...
         j = 0;
         while (j < vertices)
         {
