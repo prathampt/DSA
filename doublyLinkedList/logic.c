@@ -54,8 +54,9 @@ void insertAtBeginning(List *l, int data){
 }
 
 void insertAtIndex(List *l, int data, int index){
-    if (index < 0) return;
-    else if (index == 0) {
+    if (index < 0 || index > length(*l)) return;
+
+    if (index == 0) {
         insertAtBeginning(l, data);
         return;
     }
@@ -74,6 +75,13 @@ void insertAtIndex(List *l, int data, int index){
     {
         p = p->next;
     }
+    
+    if(!p->next){
+        p->next = nn;
+        nn->previous = p;
+        l->rear = nn;
+        return;
+    }
 
     p->next->previous = nn;
     nn->next = p->next;
@@ -89,10 +97,10 @@ int removeEnd(List *l){
 
     l->rear = l->rear->previous;
     if (!l->rear){
-        l->front = NULL;
-        return INT_MIN;
+        l->front = NULL;   
+    }else{
+        l->rear->next = NULL;
     }
-    l->rear->next = NULL;
 
     int data = p->data;
 
@@ -108,9 +116,9 @@ int removeBeginning(List *l){
     l->front = l->front->next;
     if (!l->front){
         l->rear = NULL;
-        return INT_MIN;
-    } 
-    l->front->previous = NULL;
+    }else{
+        l->front->previous = NULL;
+    }
 
     int data = p->data;
 

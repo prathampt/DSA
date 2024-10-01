@@ -33,6 +33,9 @@ int main(){
     display(l);
     swapNodes(&l, l.front->next->next, l.front->next->next->next);
     display(l);
+    printf("Reversing the list:\n");
+    reverseList(&l);
+    display(l);
 
     printf("Destroying the list:\n");
     destroy(&l);
