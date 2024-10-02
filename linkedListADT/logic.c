@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "header.h"
 
 void init(List *l){
@@ -101,31 +102,33 @@ int removeBeginning(List *l){
 }
 
 int removeNode(List *l, Node *n){
-    Node *p, *q;
+    if(!*l || !n) return INT_MIN;
+
+    Node *removedNode;
     int removedElement;
 
-    if (!*l) return -1;
-
-    p = *l;
-
-    if (!p->next)
-    {
-        removedElement = p->data;
-        *l = NULL;
-        free(p);
+    Node *temp = *l;
+    
+    if (temp == n){
+        removedNode = temp;
+        removedElement = removedNode->data;
+        *l = temp->next;
+        free(removedNode);
         return removedElement;
     }
-
-    while (p->next->next != n)
-    {
-        p = p->next;
-    }
     
-    q = p->next;
-    p->next = p->next->next;
 
-    removedElement = q->data;
-    free(q);
+    while(temp && temp->next != n){
+        temp = temp->next;
+    }
+
+    if(!temp) return INT_MIN;
+
+    removedNode = temp->next;
+    removedElement = removedNode->data;
+    temp->next = temp->next->next;
+    free(removedNode);
+    
     return removedElement;
 }
 

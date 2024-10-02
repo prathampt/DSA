@@ -17,8 +17,8 @@ void enQueue(Queue *q, int data){
     if (isFull(*q)) return;
 
     if (isEmpty(*q)) q->front = 0;
-
     q->rear = ++q->rear % q->size;
+    
     q->Q[q->rear] = data;
     q->length++;
     return;
@@ -26,9 +26,10 @@ void enQueue(Queue *q, int data){
 
 int deQueue(Queue *q){
     if (isEmpty(*q)) return INT_MIN;
-    q->length--;
+    int data = q->Q[q->front];
     q->front = ++q->front % q->size;
-    return q->Q[q->front];    
+    q->length--;
+    return data;    
 }
 
 int isEmpty(Queue q){

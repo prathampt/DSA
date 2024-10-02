@@ -24,8 +24,12 @@ void enQueue(Queue *q, int data){
 
 int deQueue(Queue *q){
     if (isEmpty(*q)) return INT_MIN;
+    int data = q->Q[q->front++]
+    if(q->front > q->rear){
+        q->front = q->rear = -1;
+    }
 
-    return q->Q[q->front++];    
+    return data;
 }
 
 int isEmpty(Queue q){

@@ -120,8 +120,8 @@ int removeBeginning(List *l){
     if (p->next == *l)
     {
         removedElement = p->data;
-        *l = NULL;
         free(p);
+        *l = NULL;
         return removedElement;
     }
 

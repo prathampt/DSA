@@ -30,15 +30,18 @@ void enQueue(Queue *q, int data){
 int deQueue(Queue *q){
     if (isEmpty(*q)) return INT_MIN;
 
-    if(q->front == q->rear) q->rear = NULL;
-
     Node *p = q->front;
-    q->front = q->front->next;
+    int data = p->data;
 
-    int d = p->data;    
+    if(q->front == q->rear){
+        q->front = q->rear = NULL;
+    }else{
+        q->front = q->front->next;
+    }
+
     free(p);
 
-    return d;
+    return data;
 }
 
 int isEmpty(Queue q){

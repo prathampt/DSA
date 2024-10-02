@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "logic.c"
 
+
 int main() {
     List myList;
     init(&myList);
@@ -109,6 +110,13 @@ int main() {
 
     display(palindromeTest1);
     removeAndInsert(&palindromeTest1, palindromeTest1->next->next->next, 0);
+    display(palindromeTest1);
+
+    /* Test for removeNode - MD */
+    printf("Before removing node: \n");
+    display(palindromeTest1);
+    printf("Removed node: %d\n", removeNode(&palindromeTest1, palindromeTest1->next->next));
+    printf("After removing node: \n");
     display(palindromeTest1);
 
     // Destroy function...
