@@ -22,10 +22,10 @@ int main(){
     writeIntoFile("matrix4.txt", *s4);
     */
     
-    readFromFile("Matrix1.txt", &s1);
+    readFromFile("Matrix_1.txt", &s1);
     display(s1);
 
-    readFromFile("Matrix2.txt", &s2);
+    readFromFile("Matrix_2.txt", &s2);
     display(s2);
 
     Sparse * s3 = add(s1, s2);
